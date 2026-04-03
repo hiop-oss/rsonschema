@@ -1,0 +1,11 @@
+name: rsonschema
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - ipykernel
+  - ipython
+  - python>=3.10,<3.14
+  - pip
+  - maturin>=1.0,<1.9
+  - pre-commit

@@ -1,0 +1,3 @@
+# Exclude submodule content; format only this repo's Markdown
+ignore:
+  - rust/tests/JSON-Schema-Test-Suite/**

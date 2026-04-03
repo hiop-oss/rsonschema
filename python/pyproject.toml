@@ -1,0 +1,36 @@
+[build-system]
+requires = [
+    "maturin>=1.0,<1.13",
+]
+build-backend = "maturin"
+
+[project]
+name = "rsonschema"
+dynamic = [
+    "version",
+]
+
+[project.optional-dependencies]
+dev = [
+    "jsonschema",
+    "pytest",
+    "pytest-benchmark",
+    "ruff",
+]
+
+[tool.ruff.lint]
+select = [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "G",
+    "I",
+    "N",
+    "Q",
+    "SIM",
+    "T",
+    "UP",
+    "W",
+]

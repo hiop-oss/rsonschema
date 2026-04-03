@@ -1,0 +1,99 @@
+name: validate
+
+on:
+  push:
+    branches:
+      - dev*
+      - hotfix*
+
+  pull_request:
+    branches:
+      - dev*
+      - hotfix*
+    types:
+      - opened
+      - ready_for_review
+      - synchronize
+
+  workflow_call:
+
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: setup rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: nightly
+
+      - name: cache rust
+        uses: Swatinem/rust-cache@v2
+
+      - name: install rust dependencies
+        run: cargo install cargo-audit cargo-udeps --locked
+
+      - name: audit deps
+        run: cargo +stable audit
+
+      - name: check unused deps
+        run: cargo +nightly udeps --all-targets
+
+  docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: setup rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+
+      - name: cache rust
+        uses: Swatinem/rust-cache@v2
+
+      - name: check docs
+        run: cargo doc --no-deps
+
+  format-lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: setup rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          components: clippy, rustfmt
+          toolchain: stable
+
+      - name: cache rust
+        uses: Swatinem/rust-cache@v2
+
+      - name: check format
+        run: cargo fmt --check
+
+      - name: check lint
+        run: cargo clippy --all-targets -- --deny warnings
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: setup rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+
+      - name: cache rust
+        uses: Swatinem/rust-cache@v2
+
+      - name: run tests
+        run: cargo test --no-fail-fast -- --nocapture --test-threads=1

@@ -1,0 +1,91 @@
+[package]
+name = "rsonschema"
+publish = true
+
+authors.workspace = true
+categories.workspace = true
+description.workspace = true
+documentation.workspace = true
+edition.workspace = true
+homepage.workspace = true
+keywords.workspace = true
+license.workspace = true
+readme.workspace = true
+repository.workspace = true
+version.workspace = true
+
+[dependencies]
+bigdecimal = "0.4"
+chrono = "0.4"
+either = "1.15"
+fancy-regex = "0.17"
+hostname-validator = "1.1"
+idna = "1.1"
+iso8601-duration = "0.2"
+iri-string = "0.7"
+jsonptr = "0.7"
+percent-encoding = "2.3"
+serde_json = "1.0"
+strsim = "0.11"
+thiserror = "2.0"
+unicode-normalization = "0.1"
+unicode-script = "0.5"
+uri-template-ex = "0.0"
+uuid = "1.23"
+
+[dependencies.addr]
+version = "0.15"
+features = [
+    "net",
+]
+
+[dependencies.idna_adapter]
+version = "1.2"
+features = [
+    "compiled_data",
+]
+
+[dependencies.indexmap]
+version = "2.13"
+features = [
+    "serde",
+]
+
+[dependencies.regress]
+version = "0.11"
+default-features = false
+features = [
+    "std",
+]
+
+[dependencies.serde]
+version = "1.0"
+features = [
+    "derive",
+]
+
+[dependencies.ureq]
+version = "3.3"
+features = [
+    "json",
+]
+
+[dependencies.url]
+version = "2.5"
+features = [
+    "serde",
+]
+
+[dev-dependencies]
+jsonschema = "0.45"
+rstest = "0.26"
+
+[dev-dependencies.criterion]
+version = "0.8"
+features = [
+    "html_reports",
+]
+
+[[bench]]
+name = "validate"
+harness = false

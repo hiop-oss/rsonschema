@@ -1,0 +1,55 @@
+[package]
+name = "python"
+publish = false
+
+[lib]
+crate-type = [
+    "cdylib",
+]
+
+[dependencies]
+pythonize = "0.28"
+serde_json = "1.0"
+
+[package.authors]
+workspace = true
+
+[package.categories]
+workspace = true
+
+[package.description]
+workspace = true
+
+[package.documentation]
+workspace = true
+
+[package.edition]
+workspace = true
+
+[package.homepage]
+workspace = true
+
+[package.keywords]
+workspace = true
+
+[package.license]
+workspace = true
+
+[package.readme]
+workspace = true
+
+[package.repository]
+workspace = true
+
+[package.version]
+workspace = true
+
+[dependencies.rsonschema]
+path = "../rust"
+version = "=0.1.15"
+
+[dependencies.pyo3]
+version = "0.28"
+features = [
+    "extension-module",
+]
