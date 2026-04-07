@@ -120,17 +120,17 @@ jobs:
       - name: cache rust
         uses: Swatinem/rust-cache@v2
 
-      - name: merge main -> dev
+      - name: merge master -> develop
         uses: devmasx/merge-branch@v1.4.0
         with:
-          from_branch: main
-          target_branch: dev
+          from_branch: master
+          target_branch: develop
           github_token: ${{ github.token }}
           type: now
 
       - uses: actions/checkout@v6
         with:
-          ref: dev
+          ref: develop
 
       - name: install cargo-release
         run: cargo install cargo-release
