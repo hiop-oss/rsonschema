@@ -1,6 +1,16 @@
 <!-- markdownlint-disable MD013 -->
 # rsonschema
 
+[![Crates.io](https://img.shields.io/crates/v/rsonschema)](https://crates.io/crates/rsonschema)
+[![docs.rs](https://docs.rs/rsonschema/badge.svg)](https://docs.rs/rsonschema)
+[![PyPI](https://img.shields.io/pypi/v/rsonschema)](https://pypi.org/project/rsonschema/)
+[![CI](https://github.com/hiop-oss/rsonschema/actions/workflows/validate.yml/badge.svg)](https://github.com/hiop-oss/rsonschema/actions/workflows/validate.yml)
+[![License](https://img.shields.io/crates/l/rsonschema)](https://github.com/hiop-oss/rsonschema/blob/master/LICENSE)
+
+A fast, simple, and user-friendly
+[JSON Schema](https://json-schema.org/) validator for Rust,
+with Python bindings.
+
 ## Prologue
 
 In the world of data validation,
@@ -11,13 +21,13 @@ we sought a language-agnostic format to define how data should be structured,
 and JSON Schema stood out as the perfect solution.
 
 This inspired the creation of `rsonschema`, a fast,
-simple, and user-friendly JSON Schema validator for Rust
+simple, and user-friendly JSON Schema validator for Rust.
 
 ### Why Rust?
 
 Rust is celebrated for its performance and safety capabilities.
 These attributes make it an excellent choice for building a fast,
-user-friendly, secure, and efficient validator
+user-friendly, secure, and efficient validator.
 
 ### Alternatives
 
@@ -26,7 +36,7 @@ was previously our choice,
 offering robust validation but suffering from complex error handling. For example:
     1. `jsonschema::error::ValidationError` borrows the `instance` attribute,
     adding complexity.
-    2. it lacks of useful error messages for end users,
+    2. it lacks useful error messages for end users,
     especially when validating schemas with
     [Schema Composition](https://json-schema.org/understanding-json-schema/reference/combining)
     failures.
@@ -37,12 +47,12 @@ it has complex error handling.
 Moreover it is not actively maintained.
 
 - **[schemars](https://docs.rs/schemars/latest/schemars/)**:
-a _de facto_ standard  which inspired us with over 19 million downloads.
-However, it lacks of validation APIs
+a _de facto_ standard for schema generation with over 19 million downloads.
+However, it lacks validation APIs.
 
 ## Usage
 
-### Installation
+### Rust
 
 Add `rsonschema` to your `Cargo.toml`:
 
@@ -50,11 +60,8 @@ Add `rsonschema` to your `Cargo.toml`:
 cargo add rsonschema
 ```
 
-### Example
-
 Here's how you can start using `rsonschema` in your Rust project:
 
-<!-- markdownlint-disable MD013 -->
 ```rust
 let schema = serde_json::json!({
     "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -91,9 +98,32 @@ assert_eq!(
     }
 );
 ```
+
+### Python
+
+Install from PyPI (requires Python >= 3.10):
+
+```sh
+pip install rsonschema
+```
+
+```python
+import rsonschema
+
+schema = {"$schema": "https://json-schema.org/draft/2020-12/schema", "minLength": 3}
+
+# validate(instance, schema, pointer=None, ref_resolver=None)
+errors = rsonschema.validate("foo", schema, None, None)
+assert errors == []
+
+errors = rsonschema.validate("a", schema, None, None)
+assert len(errors) == 1
+assert errors[0].message  # human-readable error description
+```
+
 <!-- markdownlint-enable MD013 -->
 
-### Performance
+## Performance
 
 <!-- markdownlint-disable MD013 -->
 
@@ -112,24 +142,30 @@ See [BENCHMARKS.md](./BENCHMARKS.md) for the full methodology and results, inclu
 
 <!-- markdownlint-enable MD013 -->
 
-### Reliability
+## Scope
 
-Currently,
-`rsonschema` supports only the latest
-([`2020-12`](https://json-schema.org/draft/2020-12/release-notes))
-JSON Schema specification.
+`rsonschema` targets a specific, well-defined subset of JSON Schema:
 
-All official tests, located in the
-[`tests`](https://github.com/hiop-oos/rsonschema/tree/master/tests) folder,
-are passing, except for features that are not yet supported
+- **Draft**: only the latest
+  ([`2020-12`](https://json-schema.org/draft/2020-12/release-notes))
+  specification is supported. Older drafts are not.
+- **Validation only**: the library validates instances against schemas
+  and reports errors — it does not generate schemas or produce
+  annotation output.
+- **All standard keywords** are implemented, including schema composition
+  (`allOf`, `anyOf`, `oneOf`, `not`), conditionals (`if`/`then`/`else`),
+  references (`$ref`, `$anchor`), unevaluated keywords
+  (`unevaluatedProperties`, `unevaluatedItems`), and format assertions.
+- **Intentionally unsupported**: dynamic keywords
+  [`$dynamicAnchor`](https://www.learnjsonschema.com/2020-12/core/dynamicanchor/)
+  and
+  [`$dynamicRef`](https://www.learnjsonschema.com/2020-12/core/dynamicref/)
+  are excluded because they introduce significant complexity
+  with limited practical benefit.
 
-### Compatibility
-
-Currently, `rsonschema` intentionally does not support dynamic keywords such as
-[`$dynamicAnchor`](https://www.learnjsonschema.com/2020-12/core/dynamicanchor/)
-and
-[`$dynamicRef`](https://www.learnjsonschema.com/2020-12/core/dynamicref/),
-as these introduce complexity
+All [official JSON Schema Test Suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite) tests,
+located in the [`tests`](https://github.com/hiop-oss/rsonschema/tree/master/rust/tests) folder,
+pass — except for the unsupported dynamic keywords above.
 
 ## Community
 
@@ -139,7 +175,9 @@ We firmly believe that collaboration is the key to innovation!
 
 If you find a bug or have a feature request, please open an issue.
 If you want to go further and tackle it,
-open a pull request on our GitHub [repository](<https://github.com/hiop-oos/rsonschema>).
+open a pull request on our GitHub [repository](https://github.com/hiop-oss/rsonschema).
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for development guidelines.
 
 ### License
 

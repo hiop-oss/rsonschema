@@ -14,15 +14,19 @@ authors = [
 ]
 description = "A fast, simple, user-friendly JSON Schema validator for Rust"
 documentation = "https://docs.rs/rsonschema"
-homepage = "https://github.com/hiop-oos/rsonschema"
+homepage = "https://github.com/hiop-oss/rsonschema"
 keywords = [
+    "json",
     "jsonschema",
-    "parser",
+    "schema",
     "validation",
+    "validator",
 ]
 license = "Apache-2.0"
 readme = "README.md"
-repository = "https://github.com/hiop-oos/rsonschema"
+repository = "https://github.com/hiop-oss/rsonschema"
 categories = [
     "development-tools",
+    "parser-implementations",
+    "web-programming",
 ]

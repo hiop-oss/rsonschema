@@ -6,9 +6,33 @@ build-backend = "maturin"
 
 [project]
 name = "rsonschema"
+description = "A fast, simple, user-friendly JSON Schema validator powered by Rust"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
 dynamic = [
     "version",
 ]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Rust",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/hiop-oss/rsonschema"
+Repository = "https://github.com/hiop-oss/rsonschema"
+Documentation = "https://github.com/hiop-oss/rsonschema"
+Issues = "https://github.com/hiop-oss/rsonschema/issues"
 
 [project.optional-dependencies]
 dev = [
