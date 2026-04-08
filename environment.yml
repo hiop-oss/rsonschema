@@ -7,5 +7,5 @@ dependencies:
   - ipython
   - python>=3.10,<3.14
   - pip
-  - maturin>=1.0,<1.9
+  - maturin>=1.0,<1.13
   - pre-commit
