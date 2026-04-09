@@ -68,7 +68,7 @@ jobs:
           args: --release --out dist --manifest-path python/Cargo.toml
           manylinux: auto
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: python-wheels-${{ matrix.os }}-${{ matrix.target }}
           path: dist/
