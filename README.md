@@ -163,9 +163,12 @@ See [BENCHMARKS.md](./BENCHMARKS.md) for the full methodology and results, inclu
   are excluded because they introduce significant complexity
   with limited practical benefit.
 
-All [official JSON Schema Test Suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite) tests,
-located in the [`tests`](https://github.com/hiop-oss/rsonschema/tree/master/rust/tests) folder,
-pass — except for the unsupported dynamic keywords above.
+All [official JSON Schema Test Suite][json-schema-test-suite] tests,
+located in the [`tests`][rsonschema-tests] folder, pass — except for the
+unsupported dynamic keywords above.
+
+[json-schema-test-suite]: https://github.com/json-schema-org/JSON-Schema-Test-Suite
+[rsonschema-tests]: https://github.com/hiop-oss/rsonschema/tree/master/rust/tests
 
 ## Community
 
