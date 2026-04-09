@@ -7,7 +7,7 @@ build-backend = "maturin"
 [project]
 name = "rsonschema"
 description = "A fast, simple, user-friendly JSON Schema validator powered by Rust"
-readme = "README.md"
+readme = "../README.md"
 license = "Apache-2.0"
 requires-python = ">=3.10"
 dynamic = [
