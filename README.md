@@ -118,10 +118,103 @@ assert errors == []
 
 errors = rsonschema.validate("a", schema, None, None)
 assert len(errors) == 1
-assert errors[0].message  # human-readable error description
+assert str(errors[0])  # human-readable error description
 ```
 
 <!-- markdownlint-enable MD013 -->
+
+## Error Messages
+
+One of `rsonschema`'s key strengths is the quality of its human-readable error messages.
+Each error includes the failing value, the full path to it within the document,
+and a precise description — making them suitable to display directly to end users.
+
+### Simple constraint violation
+
+```rust
+let schema = serde_json::json!({
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "string",
+    "minLength": 5
+});
+
+let report = rsonschema::validate(&serde_json::json!("hi"), schema);
+let error = report.errors.unwrap().into_iter().min().unwrap();
+println!("{error}");
+// "hi": must be longer than `5` characters
+```
+
+### Nested objects
+
+The pointer tracks the full path from the document root to the failing value:
+
+```rust
+let schema = serde_json::json!({
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "properties": {
+        "user": {
+            "required": ["name", "email"]
+        }
+    }
+});
+
+let report = rsonschema::validate(
+    &serde_json::json!({"user": {"name": "Alice"}}),
+    schema,
+);
+let error = report.errors.unwrap().into_iter().min().unwrap();
+println!("{error}");
+// {"name":"Alice"} at `user`: missing required: `email`
+```
+
+### Schema composition (`anyOf`, `oneOf`, `allOf`)
+
+<!-- markdownlint-disable MD013 -->
+
+When validation fails on a composition keyword,
+`rsonschema` surfaces the **most relevant** inner error
+rather than a generic "did not match any schema" message.
+Relevance is determined by how closely the instance resembles each branch,
+using string similarity on values and property names.
+
+<!-- markdownlint-enable MD013 -->
+
+```rust
+let schema = serde_json::json!({
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {"type": "string", "minLength": 5},
+        {"type": "integer", "minimum": 10}
+    ]
+});
+
+let report = rsonschema::validate(&serde_json::json!("hi"), schema);
+let error = report.errors.unwrap().into_iter().min().unwrap();
+println!("{error}");
+// "hi": must be longer than `5` characters
+```
+
+`"hi"` is clearly closer to the `string` branch,
+so the `minLength` error from that branch is surfaced
+instead of a generic composition failure.
+
+### Python bindings
+
+The same messages are available via the `.message` attribute on each error object:
+
+```python
+import rsonschema
+
+schema = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "properties": {
+        "user": {"required": ["name", "email"]}
+    },
+}
+errors = rsonschema.validate({"user": {"name": "Alice"}}, schema, None, None)
+print(str(errors[0]))
+# {"name":"Alice"} at `user`: missing required: `email`
+```
 
 ## Performance
 
