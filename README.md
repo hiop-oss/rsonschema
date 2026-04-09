@@ -278,4 +278,4 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for development guidelines.
 ### License
 
 `rsonschema` is licensed under the Apache-2.0 License.
-See the [LICENSE](./LICENSE) file for more details.
+See the [LICENSE](./LICENSE.md) file for more details.
