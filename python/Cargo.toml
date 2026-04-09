@@ -46,7 +46,7 @@ workspace = true
 
 [dependencies.rsonschema]
 path = "../rust"
-version = "=0.1.15"
+version = "=0.1.16"
 
 [dependencies.pyo3]
 version = "0.28"
