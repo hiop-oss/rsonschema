@@ -1,3 +1,3 @@
-[submodule "rsonschema/tests/JSON-Schema-Test-Suite"]
+[submodule "rust/tests/JSON-Schema-Test-Suite"]
 	path = rust/tests/JSON-Schema-Test-Suite
-	url = git@github.com:json-schema-org/JSON-Schema-Test-Suite.git
+	url = https://github.com/json-schema-org/JSON-Schema-Test-Suite.git
