@@ -46,7 +46,7 @@ features = [
 ]
 
 [dependencies.indexmap]
-version = "2.13"
+version = "2.14"
 features = [
     "serde",
 ]
