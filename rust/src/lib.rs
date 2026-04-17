@@ -59,7 +59,7 @@
 //! #### Too many arguments?
 //!
 //! We doubted whether having such a large number of arguments on `validate` method was a correct choice.
-//! Currently we suppose this is the best option because every argument has its own differnt lifetime:
+//! Currently we suppose this is the best option because every argument has its own different lifetime:
 //!
 //! - `instance` is the reference to the JSON instance to be validated and it is borrowed from the caller.
 //!   It changes for every validation subschema
