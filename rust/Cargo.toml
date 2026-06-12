@@ -17,7 +17,7 @@ version.workspace = true
 [dependencies]
 bigdecimal = "0.4"
 chrono = "0.4"
-either = "1.15"
+either = "1.16"
 fancy-regex = "0.18"
 hostname-validator = "1.1"
 idna = "1.1"
