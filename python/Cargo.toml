@@ -49,7 +49,7 @@ path = "../rust"
 version = "=0.1.16"
 
 [dependencies.pyo3]
-version = "0.28"
+version = "0.29"
 features = [
     "extension-module",
 ]
