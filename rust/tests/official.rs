@@ -88,7 +88,7 @@ mod tests {
         // Known-unsupported cases for the pinned JSON-Schema-Test-Suite version:
         // mostly `$dynamicRef`, IDN `hostname`/`duration` optional formats, and a
         // few remote-ref edge cases. Bump this when adding/removing support.
-        const KNOWN_FAILURES: usize = 61;
+        const KNOWN_FAILURES: usize = 62;
         if counter != KNOWN_FAILURES {
             panic!("Expected {KNOWN_FAILURES} known failures, got {counter}");
         }
