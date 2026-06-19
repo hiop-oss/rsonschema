@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: setup rust
         uses: dtolnay/rust-toolchain@master
@@ -60,7 +60,7 @@ jobs:
           - os: windows-latest
             target: x64
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: PyO3/maturin-action@v1
         with:
@@ -97,7 +97,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: create github release
         uses: softprops/action-gh-release@v3
@@ -110,7 +110,7 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: setup rust
         uses: dtolnay/rust-toolchain@master
@@ -128,7 +128,7 @@ jobs:
           github_token: ${{ github.token }}
           type: now
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           ref: develop
 
