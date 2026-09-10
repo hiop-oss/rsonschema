@@ -78,7 +78,7 @@ features = [
 
 [dev-dependencies]
 jsonschema = "0.49"
-rstest = "0.26"
+rstest = "0.27"
 
 [dev-dependencies.criterion]
 version = "0.8"
