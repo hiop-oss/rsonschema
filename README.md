@@ -207,9 +207,7 @@ import rsonschema
 
 schema = {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "properties": {
-        "user": {"required": ["name", "email"]}
-    },
+    "properties": {"user": {"required": ["name", "email"]}},
 }
 errors = rsonschema.validate({"user": {"name": "Alice"}}, schema, None, None)
 print(str(errors[0]))

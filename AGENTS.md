@@ -38,7 +38,7 @@ The same requirements apply to human contributors; see [CONTRIBUTING.md](CONTRIB
   reported issues. `--all-targets` includes test code so `#[cfg(test)]` modules
   are linted too. Pre-commit runs this on commit.
 - **Markdown:** Repo Markdown (excluding the JSON-Schema-Test-Suite submodule)
-  must pass [markdownlint](.markdownlint.yaml); pre-commit runs `markdownlint
+  must pass [markdownlint](.markdownlintignore); pre-commit runs `markdownlint
   --fix` on commit.
 - **Structure:**
   - Schema keywords live under `rust/src/schema/keyword/` as separate modules
